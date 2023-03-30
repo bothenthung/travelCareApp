@@ -11,7 +11,7 @@ const App = () => {
       </View>
       <View style={styles.containerCenter}>
         <View style={styles.center}>
-          <Text style={styles.centerText}>Center text</Text>
+          <Text style={styles.centerText}>Center Text</Text>
         </View>
       </View>
       <View style={styles.containerBottom}>
