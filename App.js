@@ -1,15 +1,13 @@
-import { Image, Text, View } from "react-native"
+import Router from "@/router/router"
+import { NativeBaseProvider } from "native-base"
 import { withExpoSnack } from "nativewind"
-import { StyledComponent } from "nativewind"
+import theme from "@/common/styles/theme"
 
 const App = () => {
   return (
-    <StyledComponent
-      component={View}
-      className="w-full h-full flex justify-center items-center"
-    >
-      <Image source={require("./assets/favicon.png")} />
-    </StyledComponent>
+    <NativeBaseProvider theme={theme}>
+      <Router />
+    </NativeBaseProvider>
   )
 }
 
