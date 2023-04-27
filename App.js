@@ -1,16 +1,17 @@
-import { Image, Text, View } from "react-native"
-import { withExpoSnack } from "nativewind"
-import { StyledComponent } from "nativewind"
+import React from "react"
+import { NavigationContainer } from "@react-navigation/native"
+import { NativeBaseProvider } from "native-base"
+import { createStackNavigator } from "@react-navigation/stack"
+import TabNavigation from "./screens/TabNavigation"
 
-const App = () => {
+const Stack = createStackNavigator()
+
+export default function App() {
   return (
-    <StyledComponent
-      component={View}
-      className="w-full h-full flex justify-center items-center"
-    >
-      <Image source={require("./assets/favicon.png")} />
-    </StyledComponent>
+    <NativeBaseProvider>
+      <NavigationContainer>
+        <TabNavigation />
+      </NavigationContainer>
+    </NativeBaseProvider>
   )
 }
-
-export default withExpoSnack(App)
