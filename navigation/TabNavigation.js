@@ -12,11 +12,6 @@ import {
   UserIcon,
 } from "react-native-heroicons/solid"
 
-import Discover from "./Discover"
-import Search from "./Search"
-import Planning from "./Planning"
-import Evaluate from "./Review"
-import Profile from "./Profile"
 import {
   DiscoverScreen,
   ReviewScreen,
@@ -26,6 +21,7 @@ import {
 } from "./StackNavigation"
 
 const Tab = createBottomTabNavigator()
+
 const TabNavigation = () => {
   return (
     <Tab.Navigator

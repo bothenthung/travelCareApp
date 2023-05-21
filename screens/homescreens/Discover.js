@@ -1,35 +1,30 @@
-import React from "react"
-import {
-  View,
-  Text,
-  NativeBaseProvider,
-  Image,
-  Box,
-  Center,
-  Button,
-  VStack,
-  TouchableOpacit,
-  ScrollView,
-} from "native-base"
+import React, { useEffect } from "react"
+import { View, Text, NativeBaseProvider, Image, ScrollView } from "native-base"
 import { SafeAreaView } from "react-native-safe-area-context"
-import FeaturedRow from "./components/FeaturedRow"
+import FeaturedRow from "../components/FeaturedRow"
 import { TouchableOpacity } from "react-native"
-import FavouriteRow from "./components/FavouriteRow"
+import FavouriteRow from "../components/FavouriteRow"
 
 export default function Discover() {
+  useEffect(() => {
+    console.log("Discover")
+  }, [])
   return (
-    <NativeBaseProvider>
-      <SafeAreaView>
-        <View backgroundColor={"#fff"}>
+    useEffect(() => {
+      console.log("Discover 2")
+    }, []),
+    (
+      <NativeBaseProvider>
+        <SafeAreaView style={{ backgroundColor: "white", flex: 1 }}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View backgroundColor={"rgb(59,229,168)"}>
-              <View marginX={4} mt={1} mb={4}>
+              <View marginX={5} mt={1} mb={4}>
                 <View flexDirection="row" alignItems="center">
                   <Text fontSize="4xl" flex="1">
                     Discover
                   </Text>
                   <Image
-                    source={require("../assets/favicon.png")}
+                    source={require("../../assets/favicon.png")}
                     rounded={"full"}
                     borderColor="rgb(50, 164, 252)"
                     borderWidth={3}
@@ -130,8 +125,8 @@ export default function Discover() {
               <FavouriteRow title={"Favourite"} />
             </View>
           </ScrollView>
-        </View>
-      </SafeAreaView>
-    </NativeBaseProvider>
+        </SafeAreaView>
+      </NativeBaseProvider>
+    )
   )
 }

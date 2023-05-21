@@ -1,17 +1,22 @@
-import React from "react"
+import React, { useContext, useState } from "react"
 import { NavigationContainer } from "@react-navigation/native"
 import { NativeBaseProvider } from "native-base"
-import { createStackNavigator } from "@react-navigation/stack"
-import TabNavigation from "./screens/TabNavigation"
 
-const Stack = createStackNavigator()
+import TabNavigation from "./navigation/TabNavigation"
+import { AuthScreen } from "./navigation/StackNavigation"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { AuthContext, AuthProvider } from "./context/AuthContext"
+import Spinner from "react-native-loading-spinner-overlay/lib"
+import Navigation from "./navigation/Navigation"
+
+const Stack = createNativeStackNavigator()
 
 export default function App() {
   return (
     <NativeBaseProvider>
-      <NavigationContainer>
-        <TabNavigation />
-      </NavigationContainer>
+      <AuthProvider>
+        <Navigation />
+      </AuthProvider>
     </NativeBaseProvider>
   )
 }

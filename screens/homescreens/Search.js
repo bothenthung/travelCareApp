@@ -13,27 +13,27 @@ import {
 } from "native-base"
 import { HomeIcon, MagnifyingGlassIcon } from "react-native-heroicons/solid"
 import { AdjustmentsHorizontalIcon } from "react-native-heroicons/outline"
-import { TouchableOpacity } from "react-native"
-import { StyledComponent } from "nativewind"
-import RecentSearchRow from "./components/RecentSearchRow"
-import FeaturedRow from "./components/FeaturedRow"
-import FavouriteRow from "./components/FavouriteRow"
+
+import RecentSearchRow from "../components/RecentSearchRow"
+
+import FavouriteRow from "../components/FavouriteRow"
+import FeaturedRow from "../components/FeaturedRow"
 
 const Search = () => {
-  const navigation = useNavigation()
+  // const navigation = useNavigation()
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    })
-  }, [])
+  // useLayoutEffect(() => {
+  //   navigation.setOptions({
+  //     headerShown: false,
+  //   })
+  // }, [])
   return (
     <NativeBaseProvider>
-      <SafeAreaView>
+      <SafeAreaView style={{ backgroundColor: "white", flex: 1 }}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View backgroundColor="#fff">
-            <View mx={4}>
-              <Text fontSize="4xl">Tìm kiếm</Text>
+            <View mx={5}>
+              <Text fontSize="4xl">Search</Text>
 
               <Input
                 mt={5}

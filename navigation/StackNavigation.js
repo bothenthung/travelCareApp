@@ -1,18 +1,45 @@
-import React from "react"
-import { createStackNavigator } from "@react-navigation/stack"
-import Discover from "./Discover"
-import Search from "./Search"
-import Planning from "./Planning"
-import Review from "./Review"
-import Profile from "./Profile"
-import EditProfile from "./EditProfile"
-const Stack = createStackNavigator()
+import React, { useEffect } from "react"
 
+import Search from "../screens/homescreens/Search"
+import Planning from "../screens/homescreens/planningscreens/Planning"
+import Review from "../screens/homescreens/Review"
+import Profile from "../screens/homescreens/profilescreens/Profile"
+import EditProfile from "../screens/homescreens/profilescreens/EditProfile"
+import Discover from "../screens/homescreens/Discover"
+import SignIn from "../screens/auth/SignIn"
+import SignUp from "../screens/auth/SignUp"
+import RecoverAccount from "../screens/auth/RecoverAccount"
+
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+
+const Stack = createNativeStackNavigator()
+
+const AuthScreen = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SignInScreen"
+        component={SignIn}
+        options={{ headerShown: false, tabBarLabel: "" }}
+      />
+      <Stack.Screen
+        name="RecoverAccountScreen"
+        component={RecoverAccount}
+        options={{ headerShown: false, tabBarLabel: "" }}
+      />
+      <Stack.Screen
+        name="SignUpScreen"
+        component={SignUp}
+        options={{ headerShown: false, tabBarLabel: "" }}
+      />
+    </Stack.Navigator>
+  )
+}
 const DiscoverScreen = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="DiscoverScreen"
+        name="Discover"
         component={Discover}
         options={{ headerShown: false, tabBarLabel: "" }}
       />
@@ -61,7 +88,7 @@ const ProfileScreen = () => {
         options={{ headerShown: false, tabBarLabel: "" }}
       />
       <Stack.Screen
-        name="EditProfile"
+        name="EditProfileScreen"
         component={EditProfile}
         options={{ headerShown: false, tabBarLabel: "" }}
       />
@@ -75,4 +102,5 @@ export {
   ReviewScreen,
   PlanningScreen,
   ProfileScreen,
+  AuthScreen,
 }
