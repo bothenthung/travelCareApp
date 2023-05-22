@@ -15,15 +15,15 @@ import { PlusCircleIcon } from "react-native-heroicons/outline"
 const Evaluate = ({ navigation }) => {
   return (
     <NativeBaseProvider>
-      <SafeAreaView>
-        <ScrollView style={{ backgroundColor: "#fff" }}>
+      <SafeAreaView style={{ backgroundColor: "white", flex: 1 }}>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View mx={4}>
             <Text fontSize="4xl" flex="1">
               Review
             </Text>
             <View flexDirection={"row"} alignItems={"center"} mt={3} mb={3}>
               <Image
-                source={require("../assets/favicon.png")}
+                source={require("../../assets/favicon.png")}
                 rounded={"full"}
                 borderColor="rgb(50, 164, 252)"
                 borderWidth={3}
@@ -60,7 +60,7 @@ const Evaluate = ({ navigation }) => {
 
           <View>
             <Image
-              source={require("../assets/image7.png")}
+              source={require("../../assets/image7.png")}
               mt={5}
               alt={"Avatar"}
             ></Image>

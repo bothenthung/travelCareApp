@@ -13,8 +13,8 @@ const ReviewCard = ({
   imgUrl,
 }) => {
   return (
-    <View>
-      <View mb={1}>
+    <View mb={3}>
+      <View>
         <View flexDirection={"row"} alignContent={"center"}>
           <Image
             alt={"Avatar"}
