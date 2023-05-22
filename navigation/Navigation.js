@@ -5,18 +5,17 @@ import TabNavigation from "./TabNavigation"
 import { AuthScreen, DiscoverScreen } from "./StackNavigation"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
-import Search from "../screens/homescreens/Search"
 const Stack = createNativeStackNavigator()
 const Navigation = () => {
-  const { userInfo } = useContext(AuthContext)
+  const { userInfo, userToken } = useContext(AuthContext)
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {userInfo.tokens ? (
+        {userToken !== null ? (
           <>
             <Stack.Screen
-              name="DiscoverScreen"
-              component={DiscoverScreen}
+              name="TabNavigation"
+              component={TabNavigation}
               options={{ headerShown: false, tabBarLabel: "" }}
             />
           </>

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
 
 import {
@@ -17,8 +17,10 @@ import {
 } from "react-native-heroicons/solid"
 import ReviewCol from "../../components/ReviewCol"
 import { TouchableOpacity } from "react-native"
+import { AuthContext } from "../../../context/AuthContext"
 
 const Profile = ({ navigation }) => {
+  const { isLoading, logout } = useContext(AuthContext)
   return (
     <NativeBaseProvider>
       <SafeAreaView style={{ backgroundColor: "white", flex: 1 }}>
@@ -85,7 +87,9 @@ const Profile = ({ navigation }) => {
               backgroundColor={"#32A4FC"}
               shadow={"3"}
               mt={8}
-              onPress={() => navigation.navigate("AuthScreen")}
+              onPress={() => {
+                logout()
+              }}
             >
               <Text color={"#fff"} fontSize={20}>
                 Đăng xuất

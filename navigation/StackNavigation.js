@@ -39,7 +39,7 @@ const DiscoverScreen = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Discover"
+        name="DiscoverScreen"
         component={Discover}
         options={{ headerShown: false, tabBarLabel: "" }}
       />
