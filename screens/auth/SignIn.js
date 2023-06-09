@@ -87,7 +87,6 @@ const SignIn = ({ navigation }) => {
               shadow={"3"}
               borderRadius={9}
               my={5}
-              // onPress={() => navigation.navigate("TabNavigation")}
               onPress={() => {
                 login(username, password)
               }}

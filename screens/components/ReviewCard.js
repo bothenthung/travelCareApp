@@ -1,44 +1,56 @@
+import { format } from "date-fns"
 import { Box, Image, Text, View } from "native-base"
 import React from "react"
 import { StarIcon as StarIconSolid } from "react-native-heroicons/solid"
 
 const ReviewCard = ({
-  daypost,
-  decscription,
-  raiting,
-  name,
+  content,
+  reviewAt,
+  tripTime,
+  title,
   rating,
   genre,
   address,
   imgUrl,
+  lastName,
+  firstName,
 }) => {
-  return (
-    <View mb={3}>
-      <View>
-        <View flexDirection={"row"} alignContent={"center"}>
-          <Image
-            alt={"Avatar"}
-            source={{
-              uri: imgUrl,
-            }}
-            h={50}
-            w={85}
-            rounded={"2xl"}
-            mr={3}
-          />
+  const reviewAtDateTime = format(new Date(reviewAt), "MM/yyyy")
+  const visitAtDateTime = format(new Date(tripTime), "MM/yyyy")
 
+  return (
+    <View mb={6} borderBottomColor={"#DB147F"} borderBottomWidth={1} pb={2}>
+      <View>
+        <Text fontSize={18} fontWeight={"bold"}>
+          {firstName} {lastName}
+        </Text>
+        <View flexDirection={"row"} alignContent={"center"}>
+          {imgUrl.map((imgUrls) => (
+            <Image
+              key={imgUrls.id}
+              alt={"Avatar"}
+              source={{
+                uri: imgUrls.imageUrl,
+              }}
+              h={70}
+              w={120}
+              rounded={"2xl"}
+              mr={3}
+            />
+          ))}
           <View flex={1}>
-            <Text fontWeight={"bold"}>{name}</Text>
-            <Text>Đã viết vào {daypost}</Text>
+            <Text fontWeight={"bold"}>{title}</Text>
+            <Text>{content}</Text>
           </View>
 
           <Box
             backgroundColor="#DB147F"
-            h={8}
-            w={59}
+            h={7}
+            w={62}
             flexDirection={"row"}
             borderRadius={15}
             alignItems={"center"}
+            justifyContent={"center"}
           >
             <StarIconSolid
               size={22}
@@ -48,11 +60,15 @@ const ReviewCard = ({
               }}
             />
 
-            <Text color={"#fff"}>{rating}</Text>
+            <Text color={"#fff"} fontWeight={"bold"}>
+              {rating.toFixed(1)}
+            </Text>
           </Box>
         </View>
+        <Text>
+          Visited {visitAtDateTime} · Written {reviewAtDateTime}
+        </Text>
       </View>
-      <Text>{decscription}</Text>
     </View>
   )
 }

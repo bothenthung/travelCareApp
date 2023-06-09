@@ -18,7 +18,7 @@ const Evaluate = ({ navigation }) => {
       <SafeAreaView style={{ backgroundColor: "white", flex: 1 }}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View mx={4}>
-            <Text fontSize="4xl" flex="1">
+            <Text fontSize="4xl" flex="1" fontWeight={"medium"} mt={8}>
               Review
             </Text>
             <View flexDirection={"row"} alignItems={"center"} mt={3} mb={3}>

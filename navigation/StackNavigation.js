@@ -11,6 +11,9 @@ import SignUp from "../screens/auth/SignUp"
 import RecoverAccount from "../screens/auth/RecoverAccount"
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import Location from "../screens/location/Location"
+import AddLocationScreen from "../screens/location/AddLocationScreen"
+import AddReview from "../screens/location/AddReview"
 
 const Stack = createNativeStackNavigator()
 
@@ -35,6 +38,7 @@ const AuthScreen = () => {
     </Stack.Navigator>
   )
 }
+
 const DiscoverScreen = () => {
   return (
     <Stack.Navigator>
@@ -43,15 +47,49 @@ const DiscoverScreen = () => {
         component={Discover}
         options={{ headerShown: false, tabBarLabel: "" }}
       />
+      <Stack.Screen
+        name="AddLocationScreen"
+        component={AddLocationScreen}
+        options={{ headerShown: false, tabBarLabel: "" }}
+      />
+      <Stack.Screen
+        name="LocationScreen"
+        component={Location}
+        options={{ headerShown: false, tabBarLabel: "" }}
+      />
+      <Stack.Screen
+        name="AddReview"
+        component={AddReview}
+        options={{ headerShown: false, tabBarLabel: "" }}
+      />
     </Stack.Navigator>
   )
 }
+
+// const LocationScreen = () => {
+//   return (
+//     <Stack.Navigator>
+
+//     </Stack.Navigator>
+//   )
+// }
+
 const SearchScreen = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="SearchScreen"
         component={Search}
+        options={{ headerShown: false, tabBarLabel: "" }}
+      />
+      <Stack.Screen
+        name="LocationScreenSearch"
+        component={Location}
+        options={{ headerShown: false, tabBarLabel: "" }}
+      />
+      <Stack.Screen
+        name="AddReview"
+        component={AddReview}
         options={{ headerShown: false, tabBarLabel: "" }}
       />
     </Stack.Navigator>

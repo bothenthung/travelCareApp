@@ -6,8 +6,6 @@ import { MapPinIcon, RocketLaunchIcon } from "react-native-heroicons/solid"
 
 const Tab = createMaterialTopTabNavigator()
 
-const Stack = createNativeStackNavigator()
-
 const TripComponent = () => {
   return (
     <View style={{ width: "100%", height: "100%" }} backgroundColor={"white"}>
