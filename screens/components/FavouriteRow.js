@@ -2,7 +2,7 @@ import React from "react"
 import { NativeBaseProvider, ScrollView, Text, VStack, View } from "native-base"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { ArrowRightIcon } from "react-native-heroicons/outline"
-import HotelCard from "./HotelCard"
+
 import FavouriteCard from "./FavouriteCard"
 
 const FavouriteRow = ({ id, title, description }) => {

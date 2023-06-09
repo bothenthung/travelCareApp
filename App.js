@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { AuthContext, AuthProvider } from "./context/AuthContext"
 import Spinner from "react-native-loading-spinner-overlay/lib"
 import Navigation from "./navigation/Navigation"
+import { AxiosProvider } from "./context/AxiosContext"
 
 const Stack = createNativeStackNavigator()
 
@@ -15,7 +16,9 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <AuthProvider>
-        <Navigation />
+        <AxiosProvider>
+          <Navigation />
+        </AxiosProvider>
       </AuthProvider>
     </NativeBaseProvider>
   )

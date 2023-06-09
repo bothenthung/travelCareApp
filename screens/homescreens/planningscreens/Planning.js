@@ -19,7 +19,7 @@ const Planning = () => {
       <SafeAreaView style={{ backgroundColor: "white", flex: 1 }}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View mx={5}>
-            <Text mb={5} fontSize="4xl" flex="1">
+            <Text mb={5} fontSize="4xl" flex="1" fontWeight={"medium"} mt={8}>
               Planning
             </Text>
             <View flex={1} h={335}>
