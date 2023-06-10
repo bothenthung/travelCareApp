@@ -66,14 +66,6 @@ const DiscoverScreen = () => {
   )
 }
 
-// const LocationScreen = () => {
-//   return (
-//     <Stack.Navigator>
-
-//     </Stack.Navigator>
-//   )
-// }
-
 const SearchScreen = () => {
   return (
     <Stack.Navigator>

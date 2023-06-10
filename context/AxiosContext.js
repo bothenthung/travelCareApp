@@ -22,6 +22,18 @@ export const AxiosProvider = ({ children }) => {
   const [locations, setLocations] = useState("")
   const [reviewsLocationbyId, setreviewLocationbyId] = useState([])
 
+  const getHotels = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/hotels`)
+      const hotels = response.data
+
+      return hotels
+    } catch (error) {
+      console.log(`get locations error ${error}`)
+      return []
+    }
+  }
+
   const getPropertyAmenities = () => {
     axios
       .get(`${BASE_URL}/propertyAmenities`, {})
@@ -219,6 +231,7 @@ export const AxiosProvider = ({ children }) => {
         getHotelStyles,
         getPropertyAmenities,
         propertyAmenities,
+        getHotels,
       }}
     >
       {children}

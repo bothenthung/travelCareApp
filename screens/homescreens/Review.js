@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
 
 import {
@@ -11,8 +11,10 @@ import {
   View,
 } from "native-base"
 import { PlusCircleIcon } from "react-native-heroicons/outline"
+import { AuthContext } from "../../context/AuthContext"
 
 const Evaluate = ({ navigation }) => {
+  const { logout, userInfo, userToken } = useContext(AuthContext)
   return (
     <NativeBaseProvider>
       <SafeAreaView style={{ backgroundColor: "white", flex: 1 }}>
@@ -23,13 +25,15 @@ const Evaluate = ({ navigation }) => {
             </Text>
             <View flexDirection={"row"} alignItems={"center"} mt={3} mb={3}>
               <Image
-                source={require("../../assets/favicon.png")}
+                source={{
+                  uri: userInfo.user.profileImageUrl,
+                }}
                 rounded={"full"}
                 borderColor="rgb(50, 164, 252)"
                 borderWidth={3}
                 alt={"Avatar"}
-                h={60}
-                w={60}
+                h={70}
+                w={70}
                 mr={5}
               ></Image>
               <View mb={2}>
@@ -42,7 +46,7 @@ const Evaluate = ({ navigation }) => {
                 mr={5}
                 backgroundColor={"#fff"}
                 borderRadius={22}
-                borderColor={"#DB147F"}
+                borderColor="rgb(50, 164, 252)"
                 borderWidth={2}
               >
                 <Text>Write a review</Text>
@@ -50,7 +54,7 @@ const Evaluate = ({ navigation }) => {
               <Button
                 backgroundColor={"#fff"}
                 borderRadius={50}
-                borderColor={"#DB147F"}
+                borderColor="rgb(50, 164, 252)"
                 borderWidth={2}
               >
                 <Text>Upload photos</Text>
@@ -65,7 +69,7 @@ const Evaluate = ({ navigation }) => {
               alt={"Avatar"}
             ></Image>
             <Text
-              color={"#fffd"}
+              color={"#fff"}
               fontWeight="bold"
               fontSize={30}
               ml={4}

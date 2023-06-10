@@ -53,8 +53,6 @@ const EditProfile = ({ navigation }) => {
         quality: 1,
       })
       if (!result.cancelled) {
-        // Tiếp tục xử lý hình ảnh đã chọn ở bước tiếp theo
-        // result.uri chứa đường dẫn của hình ảnh đã chọn
         console.log(result.uri)
       }
     } catch (error) {
@@ -84,7 +82,6 @@ const EditProfile = ({ navigation }) => {
       console.log("Thông tin đã được cập nhật thành công!")
     } catch (error) {
       console.log(`Lỗi khi cập nhật thông tin: ${error}`)
-      // Xử lý lỗi nếu có, ví dụ: hiển thị thông báo lỗi
     }
   }
 
@@ -203,7 +200,6 @@ const EditProfile = ({ navigation }) => {
               placeholder="Country"
               searchPlaceholder="Search..."
               value={countryId}
-              // value={countryId}
               onChange={(item) => {
                 setuserInformation((prev) => {
                   return {
@@ -235,7 +231,6 @@ const EditProfile = ({ navigation }) => {
               searchPlaceholder="Search..."
               value={provinceId}
               onFocus={() => {}}
-              // gui object ban dau, modifile, filter
               onChange={(item) => {
                 setuserInformation((prev) => {
                   return {
@@ -339,7 +334,10 @@ const EditProfile = ({ navigation }) => {
             <Button
               backgroundColor={"#32A4FC"}
               shadow={"3"}
-              onPress={updateProfile}
+              onPress={() => {
+                updateProfile()
+                navigation.navigate("ProfileScreen")
+              }}
             >
               <Text color={"#fff"} fontSize={20}>
                 Update profile

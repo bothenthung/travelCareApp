@@ -25,7 +25,7 @@ import {
   PhotoIcon,
 } from "react-native-heroicons/solid"
 
-const AddLocationScreen = () => {
+const AddLocationScreen = ({ navigation }) => {
   const {
     getCountries,
     getProvinces,
@@ -46,7 +46,6 @@ const AddLocationScreen = () => {
   const { userToken } = useContext(AuthContext)
   const [locationName, setLocationName] = useState()
   const [category, setCategory] = useState()
-  // const [isHotel, setLocationType] = useState(false)
   const [countryId, setCountryId] = useState()
   const [provinceId, setProvinceId] = useState()
   const [districtId, setDistrictId] = useState()
@@ -63,7 +62,6 @@ const AddLocationScreen = () => {
     fetchData()
   }, [])
   const addLocation = async () => {
-    console.log(isHotel)
     try {
       const formData = new FormData()
       formData.append("name", locationName)
@@ -114,9 +112,6 @@ const AddLocationScreen = () => {
       setImagesUrl(selectedAsset)
     }
   }
-  // const handleSelectLocationType = (value) => {
-  //   setIsHotel(value === "hotel")
-  // }
 
   return (
     <NativeBaseProvider>
@@ -167,36 +162,6 @@ const AddLocationScreen = () => {
               searchPlaceholder="Search..."
               onChange={(item) => setCategory(item.value)}
             />
-            {/* <Dropdown
-              style={styles.dropdown}
-              placeholderStyle={styles.placeholderStyle}
-              selectedTextStyle={styles.selectedTextStyle}
-              inputSearchStyle={styles.inputSearchStyle}
-              iconStyle={styles.iconStyle}
-              data={data}
-              search
-              maxHeight={300}
-              labelField="label"
-              valueField="value"
-              placeholder="Location type"
-              searchPlaceholder="Search..."
-              onChange={(item) => {
-                if (item.value === "1") {
-                  setLocationType("false")
-                } else {
-                  setLocationType("true")
-                }
-              }}
-            /> */}
-            {/* <Radio.Group
-              name="locationType"
-              value={isHotel ? "hotel" : "normal"}
-              onChange={handleSelectLocationType}
-            >
-              <Radio value="hotel">Hotel</Radio>
-              <Radio value="normal">Normal Location</Radio>
-            </Radio.Group> */}
-
             <Dropdown
               style={styles.dropdown}
               placeholderStyle={styles.placeholderStyle}
@@ -289,15 +254,27 @@ const AddLocationScreen = () => {
               onChangeText={(text) => setDescription(text)}
               borderColor={"rgba(180, 180, 180, 1)"}
             ></Input>
-            <Button
-              backgroundColor={"#32A4FC"}
-              shadow={"3"}
-              onPress={handleOpenModal}
-            >
-              <Text color={"#fff"} fontSize={20}>
-                Upload Image
-              </Text>
-            </Button>
+            <TouchableOpacity onPress={handleOpenModal}>
+              <View
+                h={12}
+                borderColor={"rgba(180, 180, 180, 1)"}
+                borderWidth={3}
+                borderRadius={5}
+                justifyContent={"center"}
+              >
+                <Text
+                  ml={"12px"}
+                  color={"rgba(180, 180, 180, 1)"}
+                  fontSize={16}
+                >
+                  Upload Image
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <Text mb={"20px"} fontSize={15}>
+              Image selected x{imagesUrl.length}
+            </Text>
+
             <Modal visible={isModalOpen} animationType="fade">
               <View style={{ flex: 1, backgroundColor: "black" }}>
                 <Image
@@ -345,10 +322,7 @@ const AddLocationScreen = () => {
     </NativeBaseProvider>
   )
 }
-// const data = [
-//   { label: "Normal location", value: "1" },
-//   { label: "Hotel", value: "2" },
-// ]
+
 const styles = StyleSheet.create({
   dropdown: {
     opacity: 1,

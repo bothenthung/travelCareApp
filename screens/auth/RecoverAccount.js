@@ -53,6 +53,31 @@ const RecoverAccount = ({ navigation }) => {
               Get code
             </Text>
           </Button>
+
+          <Input
+            borderRadius={5}
+            borderWidth={3}
+            placeholder="Enter your code"
+            fontSize={16}
+            mb={4}
+            height={"12"}
+          ></Input>
+          <Input
+            borderRadius={5}
+            borderWidth={3}
+            placeholder="New password"
+            fontSize={16}
+            mb={4}
+            height={"12"}
+          ></Input>
+          <Input
+            borderRadius={5}
+            borderWidth={3}
+            placeholder="Confirm password"
+            fontSize={16}
+            mb={4}
+            height={"12"}
+          ></Input>
         </View>
       </View>
     </SafeAreaView>
