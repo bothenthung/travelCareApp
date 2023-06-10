@@ -2,7 +2,7 @@ import React from "react"
 import { NativeBaseProvider, ScrollView, Text, VStack, View } from "native-base"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { ArrowRightIcon } from "react-native-heroicons/outline"
-import HotelCard from "./LocationCard"
+import LocationsCard from "./LocationCard"
 import { AxiosContext } from "../../context/AxiosContext"
 import { useContext } from "react"
 import { useEffect } from "react"
@@ -16,7 +16,6 @@ const FeaturedRow = ({ id, title, description }) => {
   const { getLocations } = useContext(AxiosContext)
   const [locations, setLocations] = useState([])
 
-  const { getReviewByLocationId } = useContext(AxiosContext)
   useEffect(() => {
     const fetchLocations = async () => {
       try {
@@ -27,7 +26,7 @@ const FeaturedRow = ({ id, title, description }) => {
       }
     }
     fetchLocations()
-  }, [])
+  }, [locations])
 
   return (
     <View>
@@ -65,10 +64,11 @@ const FeaturedRow = ({ id, title, description }) => {
                         districtLocation: location?.address?.district?.name,
                         wardLocation: location?.address?.ward?.name,
                         locationId: location?.id,
+                        reviewcount: location?.reviewCount,
                       })
                     }}
                   >
-                    <HotelCard
+                    <LocationsCard
                       title={location.name}
                       description={location.description || ""}
                       price={0}

@@ -22,7 +22,7 @@ const Planning = () => {
             <Text mb={5} fontSize="4xl" flex="1" fontWeight={"medium"} mt={8}>
               Planning
             </Text>
-            <View flex={1} h={335}>
+            <View flex={1} h={370}>
               <ListTabPlanning />
             </View>
             <Text fontSize={"xl"} flex={1} fontWeight={"bold"}>

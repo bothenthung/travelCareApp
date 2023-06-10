@@ -36,7 +36,7 @@ const FavouriteRow = ({ id, title, description }) => {
               ></FavouriteCard>
               <FavouriteCard
                 id={123}
-                imgUrl="https://www.journeyera.com/wp-content/uploads/2019/11/WHERE-TO-STAY-PAPUA-NEW-GUINEA-a-RESORTS-1Vanimo-Surf-Lodge-1-2.jpg "
+                imgUrl="https://media.cntraveler.com/photos/53dad07e6dec627b14a04855/master/w_2580%2Cc_limit/four-seasons-bali-at-jimbaran-bay-bali-jimbaran-indonesia-108728-2.jpg "
                 title="Resort Da Nang"
                 rating={4.5}
                 genre="Đà Nẵng, Việt Nam"

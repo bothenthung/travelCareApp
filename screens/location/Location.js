@@ -23,6 +23,7 @@ const Location = ({ route, navigation }) => {
     districtLocation,
     wardLocation,
     locationId,
+    reviewcount,
   } = route.params
 
   const [reviewByLocationId, setReviewByLocationId] = useState([])
@@ -54,23 +55,17 @@ const Location = ({ route, navigation }) => {
             ))}
           </ScrollView>
           <View mx={4} mt={2}>
-            <View
-              flexDirection={"row"}
-              alignItems={"center"}
-              justifyContent={"space-between"}
-              flexWrap={"wrap"}
-            >
-              <Text fontWeight={"bold"} fontSize={"3xl"}>
-                {name}
+            <Text fontWeight={"bold"} fontSize={"3xl"}>
+              {name}
+            </Text>
+            <View flexDirection={"row"} alignItems={"center"} mb={4}>
+              <StarIcon color={"rgb(255, 224, 71)"} />
+              <Text fontSize={18} fontWeight={"medium"} flexWrap={"wrap"}>
+                {" "}
+                {rate.toFixed(1)} • Rated by {reviewcount} reviews
               </Text>
-              <View flexDirection={"row"} alignItems={"center"}>
-                <StarIcon color={"rgb(255, 224, 71)"} />
-                <Text fontSize={20} fontWeight={"bold"}>
-                  {" "}
-                  {rate.toFixed(1)}
-                </Text>
-              </View>
             </View>
+
             <View flexDirection={"row"} flexWrap={"wrap"}>
               {categoryLocation.map((category, index) => (
                 <Text key={index} style={styles.categorytext}>
@@ -103,6 +98,7 @@ const Location = ({ route, navigation }) => {
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate("AddReview", {
+                  namelocation: name,
                   locationIDs: locationId,
                 })
               }}
@@ -137,7 +133,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
   categorytext: {
-    fontSize: 17,
+    fontSize: 15,
     fontWeight: "bold",
   },
 })

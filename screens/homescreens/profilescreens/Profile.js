@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
 import * as ImagePicker from "expo-image-picker"
 import {
@@ -13,20 +13,21 @@ import {
 import {
   ArrowUturnLeftIcon,
   CheckCircleIcon,
+  EnvelopeIcon,
   MapPinIcon,
   PencilSquareIcon,
   PhoneIcon,
   PhotoIcon,
-} from "react-native-heroicons/solid"
-import ReviewCol from "../../components/ReviewCol"
+} from "react-native-heroicons/outline"
 import { Modal, TouchableOpacity } from "react-native"
 import { AuthContext } from "../../../context/AuthContext"
 import { BASE_URL } from "../../../config"
 import axios from "axios"
+import { AxiosContext } from "../../../context/AxiosContext"
 
 const Profile = ({ navigation }) => {
-  const { logout, userInfo } = useContext(AuthContext)
-  const { axiosInstance, userToken } = useContext(AuthContext)
+  const { logout, userInfo, userToken } = useContext(AuthContext)
+  const { userInformation, getUser } = useContext(AxiosContext)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null)
 
@@ -36,6 +37,12 @@ const Profile = ({ navigation }) => {
   const handleCloseModal = () => {
     setIsModalOpen(false)
   }
+  useEffect(() => {
+    const fetchData = async () => {
+      await getUser()
+    }
+    fetchData()
+  }, [])
 
   const handleSaveImage = async () => {
     try {
@@ -89,7 +96,7 @@ const Profile = ({ navigation }) => {
                 <PencilSquareIcon size={30} color={"#32A4FC"} />
               </TouchableOpacity>
             </View>
-            <View flexDirection={"row"} alignItems={"center"} mb={"8"}>
+            <View flexDirection={"row"} alignItems={"center"} mb={"5"}>
               <TouchableOpacity onPress={handleOpenModal}>
                 <Image
                   source={{
@@ -99,9 +106,8 @@ const Profile = ({ navigation }) => {
                   borderColor="rgb(50, 164, 252)"
                   borderWidth={3}
                   alt={"Avatar"}
-                  h={60}
-                  w={60}
-                  ml={4}
+                  h={70}
+                  w={70}
                   mr={5}
                 ></Image>
               </TouchableOpacity>
@@ -109,7 +115,7 @@ const Profile = ({ navigation }) => {
                 <View style={{ flex: 1, backgroundColor: "black" }}>
                   <Image
                     source={{
-                      uri: userInfo.user.profileImageUrl,
+                      uri: selectedImage || userInfo.user.profileImageUrl,
                     }}
                     style={{ flex: 1 }}
                     resizeMode="contain"
@@ -136,15 +142,23 @@ const Profile = ({ navigation }) => {
                     <TouchableOpacity onPress={handleSelectImage}>
                       <PhotoIcon name="save" size={40} color="white" />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={handleSaveImage}>
+                    <TouchableOpacity
+                      onPress={() => {
+                        handleSaveImage()
+                        handleCloseModal()
+                      }}
+                    >
                       <CheckCircleIcon name="save" size={40} color="white" />
                     </TouchableOpacity>
                   </View>
                 </View>
               </Modal>
               <View mb={2}>
-                <Text fontSize={22}>
+                <Text fontSize={24} color={"black"}>
                   {userInfo.user.firstName} {userInfo.user.lastName}
+                </Text>
+                <Text fontSize={15} color={"black"}>
+                  {userInfo.user?.account?.username}
                 </Text>
               </View>
             </View>
@@ -153,10 +167,25 @@ const Profile = ({ navigation }) => {
               <View flexDirection={"row"} alignItems={"center"} mb={2}></View>
               <View flexDirection={"row"} alignItems={"center"} mb={2}>
                 <PhoneIcon size={25} />
-                <Text ml={3}>{userInfo.user.phoneNumber}</Text>
+                <Text fontSize={18} ml={3} color={"black"}>
+                  {userInfo.user.phoneNumber}
+                </Text>
+              </View>
+              <View flexDirection={"row"} mb={2} alignItems={"center"}>
+                <MapPinIcon size={25} />
+                <Text fontSize={18} ml={3} color={"black"}>
+                  {userInformation.address?.province?.name} •{" "}
+                  {userInformation.address?.country?.name}
+                </Text>
+              </View>
+              <View flexDirection={"row"} alignItems={"center"} mb={2}>
+                <EnvelopeIcon size={25} />
+                <Text ml={3} fontSize={18} color={"black"}>
+                  {userInformation.email}
+                </Text>
               </View>
             </View>
-            <Box h={0.5} backgroundColor={"#DB147F"} mb={2} />
+            <Box h={"0.5"} backgroundColor={"#DB147F"} mb={2} />
             <View mb={2}>
               <Text fontSize={"xl"} fontWeight={"bold"} mb={1}>
                 Review
@@ -170,12 +199,11 @@ const Profile = ({ navigation }) => {
                 </Text>
               </Button>
             </View>
-            <Box h={0.5} backgroundColor={"#DB147F"} mb={5} />
-            <View flex={1} h={200}></View>
+            <Box h={0.5} backgroundColor={"#DB147F"} mb={100} />
+
             <Button
               backgroundColor={"#32A4FC"}
               shadow={"3"}
-              mt={8}
               onPress={() => {
                 logout()
               }}

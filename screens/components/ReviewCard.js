@@ -1,5 +1,5 @@
 import { format } from "date-fns"
-import { Box, Image, Text, View } from "native-base"
+import { Box, Image, ScrollView, Text, View } from "native-base"
 import React from "react"
 import { StarIcon as StarIconSolid } from "react-native-heroicons/solid"
 
@@ -25,19 +25,28 @@ const ReviewCard = ({
           {firstName} {lastName}
         </Text>
         <View flexDirection={"row"} alignContent={"center"}>
-          {imgUrl.map((imgUrls) => (
-            <Image
-              key={imgUrls.id}
-              alt={"Avatar"}
-              source={{
-                uri: imgUrls.imageUrl,
-              }}
-              h={70}
-              w={120}
-              rounded={"2xl"}
-              mr={3}
-            />
-          ))}
+          <View h={70} w={130}>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              pagingEnabled
+            >
+              {imgUrl.map((imgUrls) => (
+                <Image
+                  key={imgUrls.id}
+                  alt={"Avatar"}
+                  source={{
+                    uri: imgUrls.imageUrl,
+                  }}
+                  h={70}
+                  w={120}
+                  rounded={"2xl"}
+                  mr={3}
+                />
+              ))}
+            </ScrollView>
+          </View>
+
           <View flex={1}>
             <Text fontWeight={"bold"}>{title}</Text>
             <Text>{content}</Text>

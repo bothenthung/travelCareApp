@@ -48,13 +48,6 @@ export const AuthProvider = ({ children }) => {
     isLoggedIn()
   }, [])
 
-  // const checkTokenExpiration = async () => {
-  //   const tokenExpiration = await AsyncStorage.getItem("tokenExpiration")
-  //   const currentTime = new Date().getTime()
-  //   if (currentTime > parseInt(tokenExpiration)) {
-  //     await refreshToken()
-  //   }
-  // }
   const isLoggedIn = async () => {
     try {
       let userInfo = await AsyncStorage.getItem("userInfo")
@@ -63,10 +56,6 @@ export const AuthProvider = ({ children }) => {
       userToken = await JSON.parse(userToken)
       setUserInfo(userInfo)
       setUserToken(userToken)
-      // if (userInfo) {
-      //   setUserToken(userToken)
-      //   setUserInfo(userInfo)
-      // }
     } catch (error) {
       console.log(`is logged error ${error}`)
     }
@@ -134,12 +123,9 @@ export const AuthProvider = ({ children }) => {
       return response
     },
     async (error) => {
-      // Kiểm tra nếu lỗi là 401 (Unauthorized)
       if (error.response && error.response.status === 401) {
         try {
-          // Gọi hàm refresh token
           await refreshToken()
-          // Thử gửi lại yêu cầu API ban đầu sau khi đã có access token mới
           const originalRequest = error.config
           originalRequest.headers.Authorization = `Bearer ${await AsyncStorage.getItem(
             "userToken"
@@ -147,7 +133,6 @@ export const AuthProvider = ({ children }) => {
           return axiosInstance(originalRequest)
         } catch (refreshError) {
           console.log(refreshError)
-          // Xử lý lỗi khi refresh token không thành công
           throw refreshError
         }
       }

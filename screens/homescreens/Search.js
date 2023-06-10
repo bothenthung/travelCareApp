@@ -49,82 +49,84 @@ const Search = ({ navigation }) => {
             <Text fontSize="4xl" fontWeight={"medium"} mt={8}>
               Search
             </Text>
-          </View>
-          <FlatList
-            data={location}
-            keyExtractor={(item) => item.id}
-            ListHeaderComponent={
-              <Input
-                onChangeText={(prev) => getLocationsBySearch(prev)}
-                w={{
-                  base: "100%",
-                  md: "25%",
-                }}
-                size="2xl"
-                borderColor="#DB147F"
-                placeholder="Search something..."
-                borderRadius={25}
-                InputLeftElement={
-                  <Icon
-                    as={<MagnifyingGlassIcon />}
-                    size="7"
-                    ml="2"
-                    color="muted.400"
-                  />
-                }
-                InputRightElement={
-                  <Icon
-                    as={<AdjustmentsHorizontalIcon />}
-                    size="7"
-                    mr="5"
-                    color="muted.400"
-                  />
-                }
-              />
-            }
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate("LocationScreenSearch", {
-                    description: item?.description,
-                    name: item?.name,
-                    rate: item?.rating,
-                    imgUrl: item?.imageUrlLocations,
-                    categoryLocation: item?.categories,
-                    streetAddressLocation: item?.address?.streetAddress,
-                    countryLocation: item?.address?.country?.name,
-                    provinceLocation: item?.address?.province?.name,
-                    districtLocation: item?.address?.district?.name,
-                    wardLocation: item?.address?.ward?.name,
-                    locationId: item?.id,
-                  })
-                }}
-              >
-                <View ml={5} mt={5} flexDirection={"row"}>
-                  <Image
-                    alt="location image"
-                    source={
-                      item?.locationImages?.[0]?.imageUrl
-                        ? { uri: item.locationImages[0].imageUrl }
-                        : require("../../assets/travelcare.jpg")
-                    }
-                    style={{ width: 65, height: 65 }}
-                  />
-                  <View ml={4}>
-                    <Text fontSize={17} fontWeight={"bold"}>
-                      {item.name}
-                    </Text>
-                    <Text flexWrap={"wrap"} fontSize={12} pr={20}>
-                      {item.address?.streetAddress}, {item.address?.ward?.name},
-                      {item.address?.district?.name},{" "}
-                      {item.address?.province?.name},
-                      {item.address?.country?.name}
-                    </Text>
+
+            <FlatList
+              data={location}
+              keyExtractor={(item) => item.id}
+              ListHeaderComponent={
+                <Input
+                  onChangeText={(prev) => getLocationsBySearch(prev)}
+                  w={{
+                    base: "100%",
+                    md: "25%",
+                  }}
+                  size="2xl"
+                  borderColor="#DB147F"
+                  placeholder="Search something..."
+                  borderRadius={25}
+                  InputLeftElement={
+                    <Icon
+                      as={<MagnifyingGlassIcon />}
+                      size="7"
+                      ml="2"
+                      color="muted.400"
+                    />
+                  }
+                  InputRightElement={
+                    <Icon
+                      as={<AdjustmentsHorizontalIcon />}
+                      size="7"
+                      mr="5"
+                      color="muted.400"
+                    />
+                  }
+                />
+              }
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate("LocationScreenSearch", {
+                      description: item?.description,
+                      name: item?.name,
+                      rate: item?.rating,
+                      imgUrl: item?.imageUrlLocations,
+                      categoryLocation: item?.categories,
+                      streetAddressLocation: item?.address?.streetAddress,
+                      countryLocation: item?.address?.country?.name,
+                      provinceLocation: item?.address?.province?.name,
+                      districtLocation: item?.address?.district?.name,
+                      wardLocation: item?.address?.ward?.name,
+                      locationId: item?.id,
+                    })
+                  }}
+                >
+                  <View ml={5} mt={5} flexDirection={"row"}>
+                    <Image
+                      alt="location image"
+                      source={
+                        item?.locationImages?.[0]?.imageUrl
+                          ? { uri: item.locationImages[0].imageUrl }
+                          : require("../../assets/travelcare.jpg")
+                      }
+                      style={{ width: 65, height: 65 }}
+                    />
+                    <View ml={4}>
+                      <Text fontSize={17} fontWeight={"bold"}>
+                        {item.name}
+                      </Text>
+                      <Text flexWrap={"wrap"} fontSize={12} pr={20}>
+                        {item.address?.streetAddress},{" "}
+                        {item.address?.ward?.name},
+                        {item.address?.district?.name},{" "}
+                        {item.address?.province?.name},
+                        {item.address?.country?.name}
+                      </Text>
+                    </View>
                   </View>
-                </View>
-              </TouchableOpacity>
-            )}
-          />
+                </TouchableOpacity>
+              )}
+            />
+          </View>
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View>
@@ -134,7 +136,7 @@ const Search = ({ navigation }) => {
             <RecentSearchRow />
           </View>
           <View>
-            <FeaturedRow title={"Trải nghiệm hàng đầu"} />
+            <FeaturedRow title={"Popular locations"} />
           </View>
           <View mt={4}>
             <FavouriteRow title={"Favourite"} />
